@@ -17,14 +17,14 @@ Easy to use Http Requester | Based on HttpUrlConnection for Android | Instead of
     ```
     
     
-3. Register on request complete callback which calls when http request is completed.
+3. Register onRequestCompleteListener callback which calls when http request is completed.
    ``` java
      ApiURLConnection.HttpRequester httpRequester = new ApiURLConnection.HttpRequester(context,                                   ApiURLConnection.POST_REQUEST, "http://54.65.180.229/sync-notifications-initial/", hashMap, false);
         httpRequester.registerOnRequestCompleteListener(new ApiURLConnection.OnRequestCompleteListener() {
             @Override
             public void onComplete(Boolean success, int requestCode, String URL, String result) {
                 if( success ) {
-                        // Handle response in result
+                        // Handle response
                     } 
                 }
         });
@@ -36,5 +36,18 @@ Easy to use Http Requester | Based on HttpUrlConnection for Android | Instead of
   httpRequester.execute();
   ```
 
-
+5. (Optional) To register a single onRequestCompleteListener for multiple HttpRequester instead of registering each time, Register onRequestCompleteListener in ApiURLConnection.
   
+  ``` java
+  ApiURLConnection.registerOnRequestCompleteListener(new ApiURLConnection.OnRequestCompleteListener() {
+            @Override
+            public void onComplete(Boolean success, int requestCode, String URL, String result) {
+                if(sucess)
+                {
+                  //Handle Each URL seperately.
+                }
+            }
+        });
+  ```
+ 
+For querying any bug, Please revert back to me. Thanks
